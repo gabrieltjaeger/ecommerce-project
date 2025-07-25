@@ -1,0 +1,12 @@
+/vendor/
+/composer.lock
+
+/.env
+
+/logs/
+/cache/
+/tmp/
+/build/
+
+/node_modules/
+/package-lock.json
