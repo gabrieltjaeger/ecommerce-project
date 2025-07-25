@@ -1,0 +1,19 @@
+{
+  "name": "gabrieltjaeger/ecommerce-project",
+  "authors": [
+    {
+      "name": "Gabriel T. Jaeger",
+      "email": "hello@gabrieltjaeger.com.br"
+    }
+  ],
+  "require": {
+    "phpmailer/phpmailer": "^6.10",
+    "slim/slim": "^4.14",
+    "rain/raintpl": "^3.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "vendor\\gabrieltjaeger\\classes\\src\\"
+    }
+  }
+}
