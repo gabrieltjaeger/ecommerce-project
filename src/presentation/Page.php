@@ -4,6 +4,7 @@ namespace src\presentation;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFunction;
 
 class Page
 {
@@ -26,6 +27,9 @@ class Page
       'auto_reload' => !$isProd,
       'debug' => !$isProd,
     ]);
+    $this->twig->addFunction(new TwigFunction('asset', function ($path) {
+      return '/assets/app/' . ltrim($path, '/');
+    }));
   }
 
   public function render(): void
