@@ -1,9 +1,9 @@
 <?php
 
-namespace src\database;
+namespace src\infra\database;
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(dirname(__DIR__, 2));
+$dotenv = Dotenv::createImmutable(dirname(__DIR__, levels: 3));
 $dotenv->load();
 
 $dotenv->required([

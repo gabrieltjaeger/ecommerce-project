@@ -1,7 +1,8 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
-use src\database\sql;
+use src\infra\database\SQL;
+use src\presentation\Page;
 
 
 use Psr\Http\Message\ResponseInterface as Response;
@@ -12,14 +13,19 @@ $app = AppFactory::create();
 $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
-$app->get('/', function (Request $request, Response $response, $args) {
-
+$app->get('/', function (Request $request, Response $response) {
   $sql = new Sql();
+  $users = $sql->select("SELECT * FROM tb_users");
 
-  $results = $sql->select("SELECT * FROM tb_users");
+  $page = new Page(['users' => $users], 'home.html.twig');
+  $response->getBody()->write($page->fetch());
+  return $response->withHeader('Content-Type', 'text/html');
+});
 
-  $response->getBody()->write(json_encode($results));
-  return $response;
+$app->get('/about', function (Request $request, Response $response) {
+  $page = new Page([], 'about.html.twig');
+  $response->getBody()->write($page->fetch());
+  return $response->withHeader('Content-Type', 'text/html');
 });
 
 $app->run();

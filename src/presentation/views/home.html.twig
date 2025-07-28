@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+    <h2>Bem-vindo!</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.deslogin }}</li>
+        {% else %}
+            <li>Nenhum usuário encontrado.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
