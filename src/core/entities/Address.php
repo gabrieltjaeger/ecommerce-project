@@ -15,8 +15,19 @@ class Address extends Entity
   private ?string $country = null;
   private ?string $zip_code = null;
 
-  private function __construct(?string $id = null, ?string $person_id = null, ?Person $person = null, ?string $address = null, ?string $complement = null, ?string $city = null, ?string $state = null, ?string $country = null, ?string $zip_code = null, ?string $created_at = null, ?string $updated_at = null)
-  {
+  private function __construct(
+    ?string $id = null,
+    ?string $person_id = null,
+    ?Person $person = null,
+    ?string $address = null,
+    ?string $complement = null,
+    ?string $city = null,
+    ?string $state = null,
+    ?string $country = null,
+    ?string $zip_code = null,
+    ?string $created_at = null,
+    ?string $updated_at = null
+  ) {
     parent::__construct($id, $created_at, $updated_at);
     $this->person_id = $person_id;
     $this->person = $person;

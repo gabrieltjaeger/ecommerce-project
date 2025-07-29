@@ -9,8 +9,14 @@ class Person extends Entity
   private ?string $email = null;
   private ?string $phone = null;
 
-  public function __construct(?string $id = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $created_at = null, ?string $updated_at = null)
-  {
+  public function __construct(
+    ?string $id = null,
+    ?string $name = null,
+    ?string $email = null,
+    ?string $phone = null,
+    ?string $created_at = null,
+    ?string $updated_at = null
+  ) {
     parent::__construct($id, $created_at, $updated_at);
     $this->name = $name;
     $this->email = $email;
