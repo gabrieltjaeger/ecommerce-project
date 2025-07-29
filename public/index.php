@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 use src\infra\database\SQL;
 use src\presentation\Page;
+use src\presentation\AdminPage;
 
 
 use Psr\Http\Message\ResponseInterface as Response;
@@ -17,13 +18,19 @@ $app->get('/', function (Request $request, Response $response) {
   $sql = new Sql();
   $users = $sql->select("SELECT * FROM tb_users");
 
-  $page = new Page(['users' => $users], 'home.html.twig');
+  $page = new Page(['users' => $users], 'index.html.twig');
   $response->getBody()->write($page->fetch());
   return $response->withHeader('Content-Type', 'text/html');
 });
 
 $app->get('/about', function (Request $request, Response $response) {
   $page = new Page([], 'about.html.twig');
+  $response->getBody()->write($page->fetch());
+  return $response->withHeader('Content-Type', 'text/html');
+});
+
+$app->get('/admin', function (Request $request, Response $response) {
+  $page = new AdminPage([], 'index.html.twig');
   $response->getBody()->write($page->fetch());
   return $response->withHeader('Content-Type', 'text/html');
 });
