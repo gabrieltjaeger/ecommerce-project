@@ -14,7 +14,7 @@ abstract class Entity
   ) {
     $this->id = $id;
     $this->created_at = $created_at ?? new \DateTime();
-    $this->updated_at = $updated_at ?? new \DateTime();
+    $this->updated_at = $updated_at;
   }
 
   public function getId(): ?string
