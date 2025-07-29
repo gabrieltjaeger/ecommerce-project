@@ -12,12 +12,16 @@ class Page
   private array $data = [];
   private string $template;
 
-  public function __construct(array $data = [], string $template = 'header.html.twig')
-  {
+  public function __construct(
+    array $data = [],
+    string $template = '',
+    string $templates_path = "/presentation/views",
+    string $assets_path = "/assets/app/"
+  ) {
     $this->data = $data;
     $this->template = $template;
 
-    $viewsPath = dirname(__DIR__) . '/presentation/views';
+    $viewsPath = dirname(__DIR__) . $templates_path;
     $cachePath = dirname(__DIR__) . '/presentation/views-cache';
     $isProd = getenv('APP_ENV') === 'production';
 
@@ -27,8 +31,8 @@ class Page
       'auto_reload' => !$isProd,
       'debug' => !$isProd,
     ]);
-    $this->twig->addFunction(new TwigFunction('asset', function ($path) {
-      return '/assets/app/' . ltrim($path, '/');
+    $this->twig->addFunction(new TwigFunction('asset', function ($path) use ($assets_path) {
+      return $assets_path . ltrim($path, '/');
     }));
   }
 
