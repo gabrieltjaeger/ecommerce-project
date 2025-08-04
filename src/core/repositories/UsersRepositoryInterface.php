@@ -1,7 +1,8 @@
 <?php
+namespace src\core\repositories;
 
-use core\repositories\requests\UserSearchRequest;
-use core\entities\User;
+use src\core\repositories\requests\UserSearchRequest;
+use src\core\entities\User;
 
 interface UsersRepositoryInterface
 {
