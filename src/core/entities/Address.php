@@ -1,8 +1,8 @@
 <?php
-namespace core\entities;
+namespace src\core\entities;
 
-use core\entities\Entity;
-use core\entities\Person;
+use src\core\entities\Entity;
+use src\core\entities\Person;
 
 class Address extends Entity
 {
@@ -25,8 +25,8 @@ class Address extends Entity
     ?string $state = null,
     ?string $country = null,
     ?string $zip_code = null,
-    ?string $created_at = null,
-    ?string $updated_at = null
+    ?\DateTime $created_at = null,
+    ?\DateTime $updated_at = null
   ) {
     parent::__construct($id, $created_at, $updated_at);
     $this->person_id = $person_id;

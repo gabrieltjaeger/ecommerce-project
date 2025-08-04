@@ -1,9 +1,9 @@
 <?php
-namespace core\entities;
+namespace src\core\entities;
 
-use core\entities\Entity;
-use core\entities\User;
-use core\entities\Address;
+use src\core\entities\Entity;
+use src\core\entities\User;
+use src\core\entities\Address;
 
 class Cart extends Entity
 {

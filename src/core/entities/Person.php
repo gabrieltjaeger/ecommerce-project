@@ -1,7 +1,7 @@
 <?php
-namespace core\entities;
+namespace src\core\entities;
 
-use core\entities\Entity;
+use src\core\entities\Entity;
 
 class Person extends Entity
 {
@@ -14,8 +14,8 @@ class Person extends Entity
     ?string $name = null,
     ?string $email = null,
     ?string $phone = null,
-    ?string $created_at = null,
-    ?string $updated_at = null
+    ?\DateTime $created_at = null,
+    ?\DateTime $updated_at = null
   ) {
     parent::__construct($id, $created_at, $updated_at);
     $this->name = $name;

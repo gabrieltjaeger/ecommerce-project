@@ -1,7 +1,7 @@
 <?php
-namespace core\entities;
+namespace src\core\entities;
 
-use core\entities\Entity;
+use src\core\entities\Entity;
 
 class Category extends Entity
 {

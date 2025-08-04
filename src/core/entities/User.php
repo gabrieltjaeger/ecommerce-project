@@ -1,14 +1,15 @@
 <?php
-namespace core\entities;
+namespace src\core\entities;
 
-use core\entities\Entity;
-use core\entities\Person;
+use src\core\entities\Entity;
+use src\core\entities\Person;
 
 class User extends Entity
 {
   private ?string $person_id = null;
   private ?Person $person = null;
   private ?string $login = null;
+  private ?string $password_hash = null;
   private ?bool $is_admin = null;
 
   public function __construct(
@@ -16,14 +17,16 @@ class User extends Entity
     ?string $person_id = null,
     ?Person $person = null,
     ?string $login = null,
+    ?string $password_hash = null,
     ?bool $is_admin = null,
-    ?string $created_at = null,
-    ?string $updated_at = null
+    ?\DateTime $created_at = null,
+    ?\DateTime $updated_at = null
   ) {
     parent::__construct($id, $created_at, $updated_at);
     $this->person_id = $person_id;
     $this->person = $person;
     $this->login = $login;
+    $this->password_hash = $password_hash;
     $this->is_admin = $is_admin;
   }
 
@@ -42,6 +45,10 @@ class User extends Entity
     return $this->login;
   }
 
+  public function getPasswordHash(): ?string
+  {
+    return $this->password_hash;
+  }
   public function getIsAdmin(): ?bool
   {
     return $this->is_admin;
@@ -63,6 +70,10 @@ class User extends Entity
     $this->login = $login;
   }
 
+  public function setPasswordHash(string $password_hash): void
+  {
+    $this->password_hash = $password_hash;
+  }
   public function setIsAdmin(bool $is_admin): void
   {
     $this->is_admin = $is_admin;

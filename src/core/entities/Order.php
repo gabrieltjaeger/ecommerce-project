@@ -1,8 +1,8 @@
 <?php
-namespace core\entities;
+namespace src\core\entities;
 
-use core\entities\Entity;
-use core\entities\User;
+use src\core\entities\Entity;
+use src\core\entities\User;
 
 class Order extends Entity
 {
