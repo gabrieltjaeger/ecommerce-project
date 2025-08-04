@@ -1,39 +1,27 @@
+
 <?php
 
+session_start();
+
+
 require_once __DIR__ . '/../vendor/autoload.php';
-use src\infra\database\SQL;
-use src\presentation\Page;
-use src\presentation\AdminPage;
 
-
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 
+$container = require __DIR__ . '/../src/infra/container/index.php';
+AppFactory::setContainer($container);
+
+use src\infra\http\middlewares\EnsureAuthenticatedMiddleware;
+
 $app = AppFactory::create();
+
 $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
-$app->get('/', function (Request $request, Response $response) {
-  $sql = new Sql();
-  $users = $sql->select("SELECT * FROM tb_users");
+$ensureAuthenticated = new EnsureAuthenticatedMiddleware();
 
-  $page = new Page(['users' => $users], 'index.html.twig');
-  $response->getBody()->write($page->fetch());
-  return $response->withHeader('Content-Type', 'text/html');
-});
-
-$app->get('/about', function (Request $request, Response $response) {
-  $page = new Page([], 'about.html.twig');
-  $response->getBody()->write($page->fetch());
-  return $response->withHeader('Content-Type', 'text/html');
-});
-
-$app->get('/admin', function (Request $request, Response $response) {
-  $page = new AdminPage([], 'index.html.twig');
-  $response->getBody()->write($page->fetch());
-  return $response->withHeader('Content-Type', 'text/html');
-});
+(require __DIR__ . '/../src/infra/http/routes/api/index.php')($app);
+(require __DIR__ . '/../src/infra/http/routes/views/index.php')($app);
 
 $app->run();
 
