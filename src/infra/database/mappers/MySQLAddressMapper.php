@@ -3,9 +3,9 @@ namespace src\infra\database\mappers;
 
 use DateTime;
 use src\core\entities\Address;
-use src\core\entities\Person;
+use src\infra\database\mappers\Mapper;
 
-class MySQLAddressMapper
+class MySQLAddressMapper extends Mapper
 {
   public static function toDomain(array $data): Address
   {

@@ -2,8 +2,9 @@
 namespace src\infra\database\mappers;
 
 use src\core\entities\Order;
+use src\infra\database\mappers\Mapper;
 
-class MySQLOrderMapper
+class MySQLOrderMapper extends Mapper
 {
   public static function toDomain(array $row): Order
   {

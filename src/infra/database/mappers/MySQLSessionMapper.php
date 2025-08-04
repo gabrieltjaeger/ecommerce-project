@@ -4,8 +4,9 @@ namespace src\infra\database\mappers;
 
 use DateTime;
 use src\core\entities\Session;
+use src\infra\database\mappers\Mapper;
 
-class MySQLSessionMapper
+class MySQLSessionMapper extends Mapper
 {
   public static function toDomain(array $data): Session
   {

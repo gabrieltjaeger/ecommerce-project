@@ -3,8 +3,9 @@
 namespace src\infra\database\mappers;
 
 use src\core\entities\Product;
+use src\infra\database\mappers\Mapper;
 
-class MySQLProductMapper
+class MySQLProductMapper extends Mapper
 {
   public static function toDomain(array $row): Product
   {

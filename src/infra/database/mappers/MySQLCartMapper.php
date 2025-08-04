@@ -2,8 +2,9 @@
 namespace src\infra\database\mappers;
 
 use src\core\entities\Cart;
+use src\infra\database\mappers\Mapper;
 
-class MySQLCartMapper
+class MySQLCartMapper extends Mapper
 {
   public static function toDomain(array $row): Cart
   {

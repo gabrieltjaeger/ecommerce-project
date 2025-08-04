@@ -2,8 +2,9 @@
 namespace src\infra\database\mappers;
 
 use src\core\entities\Category;
+use src\infra\database\mappers\Mapper;
 
-class MySQLCategoryMapper
+class MySQLCategoryMapper extends Mapper
 {
   public static function toDomain(array $row): Category
   {
