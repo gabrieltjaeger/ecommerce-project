@@ -17,12 +17,11 @@ class EnsureAuthenticatedMiddleware
 {
   public function __invoke(Request $request, RequestHandler $handler): ResponseInterface
   {
-    // Valida sessão pelo cookie SESSION_ID
     if (!isset($_COOKIE['SESSION_ID'])) {
+      // Redireciona para a página de login
       $response = new Response();
-      $response->getBody()->write(json_encode(['error' => 'Unauthorized: No session cookie']));
-      return $response->withStatus(401)
-        ->withHeader('Content-Type', 'application/json');
+      return $response->withStatus(302)
+        ->withHeader('Location', '/admin/login');
     }
 
     $sessionId = $_COOKIE['SESSION_ID'];
@@ -36,7 +35,6 @@ class EnsureAuthenticatedMiddleware
         ->withHeader('Content-Type', 'application/json');
     }
 
-    // Valida IP e user-agent para maior segurança
     $ip = $_SERVER['REMOTE_ADDR'] ?? null;
     $agent = $_SERVER['HTTP_USER_AGENT'] ?? null;
     if ($session->getIpAddress() !== $ip || $session->getUserAgent() !== $agent) {

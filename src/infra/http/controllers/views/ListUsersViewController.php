@@ -23,22 +23,8 @@ class ListUsersViewController
     $listUsersUseCase = $this->container->get('listUsersUseCase');
     $users = $listUsersUseCase->execute($page, $name);
 
-    var_dump($users); // Debugging line, can be removed later
-
-    $usersView = array_map(function ($user) {
-      return [
-        'id' => $user->getId(),
-        'name' => $user->getPerson() ? $user->getPerson()->getName() : '',
-        'email' => $user->getPerson() ? $user->getPerson()->getEmail() : '',
-        'login' => $user->getLogin(),
-        'isAdmin' => $user->getIsAdmin(),
-      ];
-    }, $users);
-
-
-
     $page = new AdminPage([
-      'users' => $usersView
+      'users' => $users
     ], 'users.html.twig');
 
     $response->getBody()->write($page->fetch());
