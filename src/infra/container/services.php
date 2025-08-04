@@ -1,11 +1,9 @@
 <?php
 // Exemplo para serviços (adicione aqui quando necessário)
 
-use src\core\services\SessionServiceInterface;
 use src\infra\services\SessionService;
-use src\core\repositories\SessionsRepositoryInterface;
-use src\core\services\CookieServiceInterface;
 use src\infra\services\CookieService;
+use src\infra\services\EncrypterService;
 
 return [
   "cookieService" => function ($container) {
@@ -16,5 +14,8 @@ return [
       $container->get('sessionsRepository'),
       $container->get('cookieService')
     );
+  },
+  "encrypterService" => function ($container) {
+    return new EncrypterService();
   },
 ];
