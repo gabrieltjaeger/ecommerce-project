@@ -12,6 +12,7 @@ class UserSearchRequest
   public ?bool $is_admin = null;
   public ?DateTime $created_at = null;
   public ?DateTime $updated_at = null;
+  public ?int $page = null;
 
   public function __construct(
     ?string $id = null,
@@ -19,7 +20,8 @@ class UserSearchRequest
     ?string $login = null,
     ?bool $is_admin = null,
     ?DateTime $created_at = null,
-    ?DateTime $updated_at = null
+    ?DateTime $updated_at = null,
+    ?int $page = null
   ) {
     $this->id = $id;
     $this->person_id = $person_id;
@@ -27,6 +29,7 @@ class UserSearchRequest
     $this->is_admin = $is_admin;
     $this->created_at = $created_at;
     $this->updated_at = $updated_at;
+    $this->page = $page;
   }
 }
 ?>

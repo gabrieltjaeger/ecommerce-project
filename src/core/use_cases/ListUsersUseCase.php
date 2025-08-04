@@ -18,7 +18,6 @@ class ListUsersUseCase
   public function execute(int $page, string $name): array
   {
     $users = $this->usersRepository->list(new UserSearchRequest(page: $page, login: $name));
-
     return $users;
   }
 }
