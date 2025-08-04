@@ -9,7 +9,7 @@ use src\infra\database\SQL;
 
 class MySQLCartsRepository implements CartsRepositoryInterface
 {
-    private const TABLE_NAME = 'carts';
+    public const TABLE_NAME = 'carts';
 
     public function find(CartSearchRequest $request): ?Cart
     {

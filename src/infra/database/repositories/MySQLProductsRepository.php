@@ -9,7 +9,7 @@ use src\infra\database\SQL;
 
 class MySQLProductsRepository implements ProductsRepositoryInterface
 {
-    private const TABLE_NAME = 'products';
+    public const TABLE_NAME = 'products';
 
     public function find(ProductSearchRequest $request): ?Product
     {

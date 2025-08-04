@@ -9,7 +9,7 @@ use src\infra\database\SQL;
 
 class MySQLCategoriesRepository implements CategoriesRepositoryInterface
 {
-  private const TABLE_NAME = 'categories';
+  public const TABLE_NAME = 'categories';
 
   public function find(CategorySearchRequest $request): ?Category
   {

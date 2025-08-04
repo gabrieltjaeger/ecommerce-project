@@ -10,7 +10,7 @@ use src\infra\database\SQL;
 
 class MySQLSessionsRepository implements SessionsRepositoryInterface
 {
-    private const TABLE_NAME = 'sessions';
+    public const TABLE_NAME = 'sessions';
 
     public function find(SessionSearchRequest $request): ?Session
     {

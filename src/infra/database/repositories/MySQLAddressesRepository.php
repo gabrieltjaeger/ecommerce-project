@@ -9,7 +9,7 @@ use src\infra\database\SQL;
 
 class MySQLAddressesRepository implements AddressesRepositoryInterface
 {
-  private const TABLE_NAME = 'addresses';
+  public const TABLE_NAME = 'addresses';
 
   public function find(AddressSearchRequest $request): ?Address
   {

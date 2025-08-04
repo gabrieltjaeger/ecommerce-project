@@ -9,7 +9,7 @@ use src\infra\database\SQL;
 
 class MySQLOrdersRepository implements OrdersRepositoryInterface
 {
-    private const TABLE_NAME = 'orders';
+    public const TABLE_NAME = 'orders';
 
     public function find(OrderSearchRequest $request): ?Order
     {

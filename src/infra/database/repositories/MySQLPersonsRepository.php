@@ -9,7 +9,7 @@ use src\infra\database\SQL;
 
 class MySQLPersonsRepository implements PersonsRepositoryInterface
 {
-    private const TABLE_NAME = 'persons';
+    public const TABLE_NAME = 'persons';
 
     public function find(PersonSearchRequest $request): ?Person
     {

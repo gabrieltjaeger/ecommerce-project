@@ -6,14 +6,14 @@ use src\core\repositories\UsersRepositoryInterface;
 use src\core\entities\User;
 use src\infra\database\mappers\MySQLUserMapper;
 use src\infra\database\SQL;
+use src\infra\database\repositories\MySQLPersonsRepository;
 
 class MySQLUsersRepository implements UsersRepositoryInterface
 {
-    private const TABLE_NAME = 'users';
+    public const TABLE_NAME = 'users';
     public function find(UserSearchRequest $request): ?User
     {
         $sql = new SQL();
-
         $conditions = [
             'id' => $request->id,
             'person_id' => $request->person_id,
@@ -23,12 +23,25 @@ class MySQLUsersRepository implements UsersRepositoryInterface
             'updated_at' => $request->updated_at,
         ];
 
-        [$where, $params] = SQL::buildWhereClause($conditions);
+        [$where, $params] = SQL::buildWhereClause($conditions, self::TABLE_NAME);
 
-        $rows = $sql->select(
-            sprintf('SELECT * FROM %s %s LIMIT 1', self::TABLE_NAME, $where),
-            $params
+        $selectColumns = SQL::buildSelectColumns([
+            'users' => ['id', 'person_id', 'login', 'password_hash', 'is_admin', 'created_at', 'updated_at'],
+            'persons' => ['id', 'name', 'email', 'created_at', 'updated_at'],
+        ]);
+
+
+        $query = sprintf(
+            'SELECT %s FROM %s 
+             LEFT JOIN %s ON users.person_id = persons.id %s LIMIT 1',
+            $selectColumns,
+            self::TABLE_NAME,
+            MySQLPersonsRepository::TABLE_NAME,
+            $where
         );
+
+        $rows = $sql->select($query, $params);
+
 
         if (!$rows) {
             return null;
@@ -42,8 +55,33 @@ class MySQLUsersRepository implements UsersRepositoryInterface
 
     public function list(UserSearchRequest $request): array
     {
-        // Implementation for listing users based on the search request
-        return [];
+        $sql = new SQL();
+
+        $conditions = [
+            'id' => $request->id,
+            'person_id' => $request->person_id,
+            'login' => $request->login,
+            'is_admin' => $request->is_admin,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+        ];
+
+        [$where, $params] = SQL::buildWhereClause($conditions, self::TABLE_NAME);
+
+
+        $query = sprintf(
+            'SELECT users.*, persons.* FROM %s 
+            LEFT JOIN persons ON users.person_id = persons.id %s',
+            self::TABLE_NAME,
+            $where
+        );
+        $rows = $sql->select($query, $params);
+
+        if (!$rows) {
+            return [];
+        }
+
+        return array_map(fn($row) => MySQLUserMapper::toDomain($row), $rows);
     }
 
     public function create(User $user): void
