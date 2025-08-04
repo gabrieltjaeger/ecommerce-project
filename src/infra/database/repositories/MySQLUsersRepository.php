@@ -68,11 +68,17 @@ class MySQLUsersRepository implements UsersRepositoryInterface
 
         [$where, $params] = SQL::buildWhereClause($conditions, self::TABLE_NAME);
 
+        $selectColumns = SQL::buildSelectColumns([
+            'users' => ['id', 'person_id', 'login', 'password_hash', 'is_admin', 'created_at', 'updated_at'],
+            'persons' => ['id', 'name', 'email', 'created_at', 'updated_at'],
+        ]);
 
         $query = sprintf(
-            'SELECT users.*, persons.* FROM %s 
-            LEFT JOIN persons ON users.person_id = persons.id %s',
+            'SELECT %s FROM %s 
+            LEFT JOIN %s ON users.person_id = persons.id %s',
+            $selectColumns,
             self::TABLE_NAME,
+            MySQLPersonsRepository::TABLE_NAME,
             $where
         );
         $rows = $sql->select($query, $params);
@@ -81,7 +87,9 @@ class MySQLUsersRepository implements UsersRepositoryInterface
             return [];
         }
 
-        return array_map(fn($row) => MySQLUserMapper::toDomain($row), $rows);
+        return array_map(function ($row) {
+            return MySQLUserMapper::toDomain($row);
+        }, $rows);
     }
 
     public function create(User $user): void
