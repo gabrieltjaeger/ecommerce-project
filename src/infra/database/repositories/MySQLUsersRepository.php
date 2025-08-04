@@ -92,19 +92,56 @@ class MySQLUsersRepository implements UsersRepositoryInterface
         }, $rows);
     }
 
+
     public function create(User $user): void
     {
-        // Implementation for creating a new user
+        // Cria a pessoa primeiro
+        $person = $user->getPerson();
+        if ($person) {
+            $personsRepo = new MySQLPersonsRepository();
+            $personsRepo->create($person);
+            // Recupera o id da pessoa criada
+            $sql = new SQL();
+            $stmt = $sql->getConnection()->query('SELECT LAST_INSERT_ID() as id');
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $personId = $result['id'] ?? null;
+            if ($personId) {
+                $user->setPersonId($personId);
+            }
+        }
+        $sql = new SQL();
+        $data = [
+            'person_id' => $user->getPersonId(),
+            'login' => $user->getLogin(),
+            'password_hash' => $user->getPasswordHash(),
+            'is_admin' => $user->getIsAdmin(),
+            'created_at' => $user->getCreatedAt() ? $user->getCreatedAt()->format('Y-m-d H:i:s') : null,
+            'updated_at' => $user->getUpdatedAt() ? $user->getUpdatedAt()->format('Y-m-d H:i:s') : null,
+        ];
+        $sql->insert(self::TABLE_NAME, $data);
     }
+
 
     public function update(User $user): void
     {
-        // Implementation for updating an existing user
+        $sql = new SQL();
+        $data = [
+            'person_id' => $user->getPersonId(),
+            'login' => $user->getLogin(),
+            'password_hash' => $user->getPasswordHash(),
+            'is_admin' => $user->getIsAdmin(),
+            'updated_at' => $user->getUpdatedAt() ? $user->getUpdatedAt()->format('Y-m-d H:i:s') : null,
+        ];
+        $where = [ 'id' => $user->getId() ];
+        $sql->update(self::TABLE_NAME, $data, $where);
     }
+
 
     public function delete(string $id): void
     {
-        // Implementation for deleting a user by ID
+        $sql = new SQL();
+        $where = ['id' => $id];
+        $sql->delete(self::TABLE_NAME, $where);
     }
 }
 

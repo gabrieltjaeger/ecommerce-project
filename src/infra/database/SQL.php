@@ -16,6 +16,13 @@ $dotenv->required([
 
 class SQL
 {
+  /**
+   * Retorna a conexão PDO interna.
+   */
+  public function getConnection(): \PDO
+  {
+    return $this->conn;
+  }
   private static $HOSTNAME;
   private static $USERNAME;
   private static $PASSWORD;

@@ -13,22 +13,37 @@ class MySQLPersonsRepository implements PersonsRepositoryInterface
 
     public function find(PersonSearchRequest $request): ?Person
     {
+        var_dump($request);
+        echo "<br>";
+        echo "<br>";
         $sql = new SQL();
         $conditions = [
             'id' => $request->id,
             'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
             'created_at' => $request->created_at,
             'updated_at' => $request->updated_at,
         ];
-        [$where, $params] = SQL::buildWhereClause($conditions);
-        $rows = $sql->select(
-            sprintf('SELECT * FROM %s %s LIMIT 1', self::TABLE_NAME, $where),
-            $params
+    [$where, $params] = SQL::buildWhereClause($conditions);
+        $selectColumns = SQL::buildSelectColumns([
+            'persons' => ['id', 'name', 'email', 'created_at', 'updated_at'],
+        ]);
+        $query = sprintf(
+            'SELECT %s FROM %s %s LIMIT 1',
+            $selectColumns,
+            self::TABLE_NAME,
+            $where
         );
+        echo $query;
+        echo "<br>";
+        echo "<br>";
+        $rows = $sql->select($query, $params);
         if (!$rows) {
             return null;
         }
         $row = $rows[0];
+        var_dump($row);
         return MySQLPersonMapper::toDomain($row);
     }
 

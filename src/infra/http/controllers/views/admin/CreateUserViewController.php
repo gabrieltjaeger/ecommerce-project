@@ -1,12 +1,14 @@
 <?php
 
-namespace src\infra\http\controllers\api;
+namespace src\infra\http\controllers\views\admin;
 
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use src\presentation\AdminPage;
 
-class ListUsersController
+
+class CreateUserViewController
 {
   private ContainerInterface $container;
 
@@ -17,13 +19,12 @@ class ListUsersController
 
   public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
   {
-    $page = (int) ($args['page'] ?? null);
-    $name = (string) ($args['name'] ?? null);
+    $id = (int) ($args['id'] ?? null);
 
-    $listUsersUseCase = $this->container->get('listUsersUseCase');
-    $users = $listUsersUseCase->execute($page, $name);
+    $page = new AdminPage([], 'users-create.html.twig');
 
-    $response->getBody()->write(json_encode($users));
-    return $response->withHeader('Content-Type', 'application/json');
+    $response->getBody()->write($page->fetch());
+    return $response->withHeader('Content-Type', 'text/html');
   }
+
 }

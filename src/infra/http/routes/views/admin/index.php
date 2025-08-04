@@ -2,24 +2,26 @@
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
-use src\presentation\AdminPage;
 use src\infra\http\middlewares\EnsureAuthenticatedMiddleware;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use src\infra\http\controllers\views\admin\AuthenticateViewController;
+use src\infra\http\controllers\views\admin\IndexViewController;
+
 use src\infra\http\controllers\views\ListUsersViewController;
+use src\infra\http\controllers\views\admin\UpdateUserViewController;
+use src\infra\http\controllers\views\admin\CreateUserViewController;
 
 return function (App $app) {
   $app->get('/admin/login', AuthenticateViewController::class);
 
   $app->group('/admin', function (RouteCollectorProxy $group) {
-    $group->get('', function (Request $request, Response $response) {
-      $page = new AdminPage([], 'index.html.twig');
-      $response->getBody()->write($page->fetch());
-      return $response->withHeader('Content-Type', 'text/html');
-    });
+    $group->get('', IndexViewController::class);
 
     $group->get('/users', ListUsersViewController::class);
+    
+    $group->get('/users/create', CreateUserViewController::class);
+
+    $group->get('/users/{id}', UpdateUserViewController::class);
+
 
   })->add(new EnsureAuthenticatedMiddleware());
 };
