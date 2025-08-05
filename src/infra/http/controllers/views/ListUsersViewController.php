@@ -23,9 +23,16 @@ class ListUsersViewController
     $listUsersUseCase = $this->container->get('listUsersUseCase');
     $users = $listUsersUseCase->execute($page, $name);
 
-    $page = new AdminPage([
-      'users' => $users
-    ], 'users.html.twig');
+    $page = new AdminPage(
+      data: [
+        'users' => $users,
+        'currentPage' => 'users'
+      ],
+      template: 'users.html.twig',
+      contexts: [
+        'auth' => $this->container->get('authContext')
+      ]
+    );
 
     $response->getBody()->write($page->fetch());
     return $response->withHeader('Content-Type', 'text/html');

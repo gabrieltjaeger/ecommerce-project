@@ -7,7 +7,6 @@ use src\core\entities\Session;
 
 interface SessionServiceInterface
 {
-
   /**
    * Cria e persiste uma sessão para o usuário autenticado.
    * @param User $user
@@ -24,4 +23,9 @@ interface SessionServiceInterface
    */
   public function deleteSession(string $sessionId): void;
 
+  /**
+   * Retorna o ID do usuário autenticado na sessão atual, se houver.
+   * @return string|null
+   */
+  public function getCurrentUserId(): ?string;
 }

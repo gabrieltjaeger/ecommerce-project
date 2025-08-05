@@ -4,9 +4,10 @@ use DI\Container;
 $container = new Container();
 
 foreach ([
+    'contexts',
     'repositories',
     'services',
-    'usecases',
+    'usecases'
 ] as $provider) {
     $definitions = require __DIR__ . "/$provider.php";
     foreach ($definitions as $key => $value) {

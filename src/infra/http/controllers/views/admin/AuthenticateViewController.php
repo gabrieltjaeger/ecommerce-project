@@ -19,7 +19,12 @@ class AuthenticateViewController
 
   public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
   {
-    $page = new AdminPage([], 'login.html.twig');
+    $page = new AdminPage(
+      data:[],
+      template: 'login.html.twig',
+      contexts: [
+      'auth' => $this->container->get('authContext')
+    ]);
     $response->getBody()->write($page->fetch());
     return $response->withHeader('Content-Type', 'text/html');
   }

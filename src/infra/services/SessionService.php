@@ -12,7 +12,8 @@ class SessionService implements SessionServiceInterface
 {
   public function __construct(
     private SessionsRepositoryInterface $sessionsRepository,
-    private CookieServiceInterface $cookieService
+    private CookieServiceInterface $cookieService,
+    private \src\core\repositories\UsersRepositoryInterface $usersRepository
   ) {
   }
 
@@ -38,4 +39,20 @@ class SessionService implements SessionServiceInterface
     $this->cookieService->deleteSessionCookie();
   }
 
+  /**
+   * Retorna o ID do usuário autenticado na sessão atual, se houver.
+   */
+  public function getCurrentUserId(): ?string
+  {
+    if (empty($_COOKIE['SESSION_ID'])) {
+      return null;
+    }
+    $sessionId = $_COOKIE['SESSION_ID'];
+    $request = new \src\core\repositories\requests\SessionSearchRequest(id: $sessionId);
+    $session = $this->sessionsRepository->find($request);
+    if (!$session || !$session->getUserId()) {
+      return null;
+    }
+    return $session->getUserId();
+  }
 }

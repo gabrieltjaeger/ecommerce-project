@@ -1,5 +1,4 @@
 <?php
-// Exemplo para serviços (adicione aqui quando necessário)
 
 use src\infra\services\SessionService;
 use src\infra\services\CookieService;
@@ -12,7 +11,8 @@ return [
   "sessionService" => function ($container) {
     return new SessionService(
       $container->get('sessionsRepository'),
-      $container->get('cookieService')
+      $container->get('cookieService'),
+      $container->get('usersRepository')
     );
   },
   "encrypterService" => function ($container) {

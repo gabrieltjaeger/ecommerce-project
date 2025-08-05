@@ -29,7 +29,16 @@ class UpdateUserViewController
       return $response->withStatus(404);
     }
 
-    $page = new AdminPage(['user' => $user], 'users-update.html.twig');
+    $page = new AdminPage(
+      data: [
+        'user' => $user,
+        'currentPage' => 'users'
+      ],
+      template: 'users-update.html.twig',
+      contexts: [
+        'auth' => $this->container->get('authContext')
+      ]
+    );
 
     $response->getBody()->write($page->fetch());
     return $response->withHeader('Content-Type', 'text/html');

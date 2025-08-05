@@ -19,7 +19,9 @@ class AuthenticateViewController
 
   public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
   {
-    $page = new Page([], 'login.html.twig');
+    $page = new Page([], 'login.html.twig', '/presentation/views', '/assets/app/', [
+      'auth' => $this->container->get('authContext')
+    ]);
     $response->getBody()->write($page->fetch());
     return $response->withHeader('Content-Type', 'text/html');
   }

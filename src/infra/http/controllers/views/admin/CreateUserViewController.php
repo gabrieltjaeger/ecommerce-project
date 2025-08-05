@@ -19,9 +19,15 @@ class CreateUserViewController
 
   public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
   {
-    $id = (int) ($args['id'] ?? null);
-
-    $page = new AdminPage([], 'users-create.html.twig');
+    $page = new AdminPage(
+      data: [
+        'currentPage' => 'users'
+      ],
+      template: 'users-create.html.twig',
+      contexts: [
+        'auth' => $this->container->get('authContext')
+      ]
+    );
 
     $response->getBody()->write($page->fetch());
     return $response->withHeader('Content-Type', 'text/html');

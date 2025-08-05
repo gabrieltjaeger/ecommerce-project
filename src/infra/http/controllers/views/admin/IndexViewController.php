@@ -19,7 +19,15 @@ class IndexViewController
 
   public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
   {
-    $page = new AdminPage([], 'index.html.twig');
+    $page = new AdminPage(
+      data: [
+        'currentPage' => 'dashboard'
+      ],
+      template: 'index.html.twig',
+      contexts: [
+        'auth' => $this->container->get('authContext')
+      ]
+    );
     $response->getBody()->write($page->fetch());
     return $response->withHeader('Content-Type', 'text/html');
   }

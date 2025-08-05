@@ -95,45 +95,46 @@ class MySQLUsersRepository implements UsersRepositoryInterface
 
     public function create(User $user): void
     {
-        // Cria a pessoa primeiro
         $person = $user->getPerson();
-        if ($person) {
-            $personsRepo = new MySQLPersonsRepository();
-            $personsRepo->create($person);
-            // Recupera o id da pessoa criada
-            $sql = new SQL();
-            $stmt = $sql->getConnection()->query('SELECT LAST_INSERT_ID() as id');
-            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-            $personId = $result['id'] ?? null;
-            if ($personId) {
-                $user->setPersonId($personId);
-            }
+        if (!$person) {
+            throw new \InvalidArgumentException('User must have a Person to be created.');
         }
+
         $sql = new SQL();
-        $data = [
-            'person_id' => $user->getPersonId(),
-            'login' => $user->getLogin(),
-            'password_hash' => $user->getPasswordHash(),
-            'is_admin' => $user->getIsAdmin(),
-            'created_at' => $user->getCreatedAt() ? $user->getCreatedAt()->format('Y-m-d H:i:s') : null,
-            'updated_at' => $user->getUpdatedAt() ? $user->getUpdatedAt()->format('Y-m-d H:i:s') : null,
-        ];
-        $sql->insert(self::TABLE_NAME, $data);
+        $conn = $sql->getConnection();
+
+        $stmt = $conn->prepare('CALL create_user_with_person(?, ?, ?, ?, ?, ?)');
+        $stmt->execute([
+            $person->getName(),
+            $person->getEmail(),
+            $person->getPhone() === '' ? null : $person->getPhone(),
+            $user->getLogin(),
+            $user->getPasswordHash(),
+            $user->getIsAdmin()
+        ]);
     }
 
 
     public function update(User $user): void
     {
+        $person = $user->getPerson();
+        if (!$person) {
+            throw new \InvalidArgumentException('User must have a Person to be updated.');
+        }
+
         $sql = new SQL();
-        $data = [
-            'person_id' => $user->getPersonId(),
-            'login' => $user->getLogin(),
-            'password_hash' => $user->getPasswordHash(),
-            'is_admin' => $user->getIsAdmin(),
-            'updated_at' => $user->getUpdatedAt() ? $user->getUpdatedAt()->format('Y-m-d H:i:s') : null,
-        ];
-        $where = [ 'id' => $user->getId() ];
-        $sql->update(self::TABLE_NAME, $data, $where);
+        $conn = $sql->getConnection();
+
+        $stmt = $conn->prepare('CALL update_user_with_person(?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([
+            $person->getId(),
+            $person->getName(),
+            $person->getEmail(),
+            $person->getPhone() === '' ? null : $person->getPhone(),
+            $user->getLogin(),
+            $user->getPasswordHash(),
+            (int)$user->getIsAdmin()
+        ]);
     }
 
 
