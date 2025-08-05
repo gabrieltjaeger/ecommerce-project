@@ -3,6 +3,7 @@ use src\core\use_cases\AuthenticateUseCase;
 use src\core\use_cases\ListUsersUseCase;
 use src\core\use_cases\FetchUserUseCase;
 use src\core\use_cases\CreateUserUseCase;
+use src\core\use_cases\UpdateUserUseCase;
 
 
 return [
@@ -24,6 +25,13 @@ return [
   },
   'createUserUseCase' => function ($c) {
     return new CreateUserUseCase(
+      $c->get('usersRepository'),
+      $c->get('personsRepository'),
+      $c->get('encrypterService')
+    );
+  },
+  'updateUserUseCase' => function ($c) {
+    return new UpdateUserUseCase(
       $c->get('usersRepository'),
       $c->get('personsRepository'),
       $c->get('encrypterService')

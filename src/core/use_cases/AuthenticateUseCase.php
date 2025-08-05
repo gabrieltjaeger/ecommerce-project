@@ -37,8 +37,7 @@ class AuthenticateUseCase
       throw new \Exception('User not found');
     if (!$user->getPasswordHash())
       throw new \Exception('Password not set for user');
-    // $isPasswordValid = password_verify($password, $user->getPasswordHash());
-    $isPasswordValid = $user->getPasswordHash() == $password;
+    $isPasswordValid = password_verify($password, $user->getPasswordHash());
     if (!$isPasswordValid)
       throw new \Exception('Invalid password');
     $session = $this->sessionService->createSession($user, $ip, $userAgent);
