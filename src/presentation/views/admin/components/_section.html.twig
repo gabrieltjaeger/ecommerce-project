@@ -1,0 +1,6 @@
+<section class="content-header">
+  <h1>{{ title }}</h1>
+  {% if breadcrumb is defined %}
+    {% include 'components/_breadcrumb.html.twig' with { items: breadcrumb } %}
+  {% endif %}
+</section>

@@ -1,0 +1,7 @@
+<ol class="breadcrumb float-sm-right">
+  {% for item in items %}
+    <li class="breadcrumb-item{% if loop.last %} active{% endif %}">
+      {% if not loop.last %}<a href="{{ item.href }}">{{ item.label }}</a>{% else %}{{ item.label }}{% endif %}
+    </li>
+  {% endfor %}
+</ol>

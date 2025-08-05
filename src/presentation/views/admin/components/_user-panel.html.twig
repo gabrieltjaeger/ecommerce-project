@@ -1,0 +1,8 @@
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+  <div class="image">
+    <img src="{{ auth_user.login is defined and auth_user.login ? 'https://github.com/' ~ auth_user.login ~ '.png' : asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+  </div>
+  <div class="info">
+    <a href="#" class="d-block">{{ auth_user.person.name|default('Alexander Pierce') }}</a>
+  </div>
+</div>
