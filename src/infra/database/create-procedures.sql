@@ -80,3 +80,65 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+-- Procedure para deletar usuário e pessoa juntos de forma transacional
+DROP PROCEDURE IF EXISTS delete_user_with_person;
+DELIMITER $$
+
+CREATE PROCEDURE delete_user_with_person(
+    IN p_person_id BIGINT
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Failed to delete user with person';
+    END;
+
+    START TRANSACTION;
+
+    -- Verifica dependências em users
+    SELECT id INTO @user_id FROM users WHERE person_id = p_person_id LIMIT 1;
+    IF @user_id IS NULL THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No user found for provided person ID';
+    END IF;
+
+    -- Verifica dependências em orders
+    IF EXISTS (SELECT 1 FROM orders WHERE user_id = @user_id) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot delete: user has orders.';
+    END IF;
+
+    -- Verifica dependências em carts
+    IF EXISTS (SELECT 1 FROM carts WHERE user_id = @user_id) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot delete: user has carts.';
+    END IF;
+
+    -- Verifica dependências em users_logs
+    IF EXISTS (SELECT 1 FROM users_logs WHERE user_id = @user_id) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot delete: user has logs.';
+    END IF;
+
+    -- Verifica dependências em users_passwords_recoveries
+    IF EXISTS (SELECT 1 FROM users_passwords_recoveries WHERE user_id = @user_id) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot delete: user has password recoveries.';
+    END IF;
+
+    -- Deleta sessões do usuário
+    DELETE FROM sessions WHERE user_id = @user_id;
+
+    -- Deleta endereços vinculados à pessoa (não são críticos)
+    DELETE FROM addresses WHERE person_id = p_person_id;
+
+    -- Deleta usuário vinculado à pessoa
+    DELETE FROM users WHERE person_id = p_person_id;
+
+    -- Deleta a pessoa
+    DELETE FROM persons WHERE id = p_person_id;
+    IF ROW_COUNT() = 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No person found with provided ID';
+    END IF;
+
+    COMMIT;
+END$$
+
+DELIMITER ;

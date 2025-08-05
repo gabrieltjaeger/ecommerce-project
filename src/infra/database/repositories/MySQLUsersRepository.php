@@ -138,11 +138,31 @@ class MySQLUsersRepository implements UsersRepositoryInterface
     }
 
 
-    public function delete(string $id): void
+    public function delete(User $user): void
     {
+        $person = $user->getPerson();
+        if (!$person) {
+            throw new \InvalidArgumentException('User must have a Person to be deleted.');
+        }
+
+        $personId = $person->getId();
+        if (!$personId) {
+            throw new \InvalidArgumentException('User must have a valid Person ID to be deleted.');
+        }
+
         $sql = new SQL();
-        $where = ['id' => $id];
-        $sql->delete(self::TABLE_NAME, $where);
+        $conn = $sql->getConnection();
+
+
+
+        $stmt = $conn->prepare('CALL delete_user_with_person(?)');
+
+        var_dump($personId);
+        var_dump($stmt);
+
+        $stmt->execute([$personId]);
+
+
     }
 }
 

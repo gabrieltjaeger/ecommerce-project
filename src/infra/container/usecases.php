@@ -4,6 +4,7 @@ use src\core\use_cases\ListUsersUseCase;
 use src\core\use_cases\FetchUserUseCase;
 use src\core\use_cases\CreateUserUseCase;
 use src\core\use_cases\UpdateUserUseCase;
+use src\core\use_cases\DeleteUserUseCase;
 
 
 return [
@@ -35,6 +36,11 @@ return [
       $c->get('usersRepository'),
       $c->get('personsRepository'),
       $c->get('encrypterService')
+    );
+  },
+  'deleteUserUseCase' => function ($c) {
+    return new DeleteUserUseCase(
+      $c->get('usersRepository'),
     );
   }
 ];
