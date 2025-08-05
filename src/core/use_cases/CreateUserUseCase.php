@@ -28,14 +28,12 @@ class CreateUserUseCase
 
   public function execute(string $name, string $login, string $phone, string $email, string $password, bool $isAdmin): ?User
   {
-    var_dump($name, $login, $phone, $email, $password, $isAdmin);
     $userWithSameLogin = $this->usersRepository->find(new UserSearchRequest(login: $login));
     if ($userWithSameLogin) {
       throw new \Exception('User with this login already exists');
     }
 
     $personWithSameEmail = $this->personsRepository->find(new PersonSearchRequest(email: $email));
-    var_dump($personWithSameEmail);
     if ($personWithSameEmail) {
       throw new \Exception('User with this email already exists');
     }
@@ -56,8 +54,6 @@ class CreateUserUseCase
       password_hash: $this->encrypterService->encrypt($password),
       is_admin: $isAdmin
     );
-
-    var_dump($user);
 
     $this->usersRepository->create($user);
 
