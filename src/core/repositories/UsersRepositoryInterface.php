@@ -14,7 +14,7 @@ interface UsersRepositoryInterface
   public function list(UserSearchRequest $request): array;
   public function create(User $user): void;
   public function update(User $user): void;
-  public function delete(string $id): void;
+  public function delete(User $user): void;
 }
 
 ?>
