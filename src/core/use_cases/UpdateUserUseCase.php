@@ -2,13 +2,9 @@
 
 namespace src\core\use_cases;
 
-use src\core\entities\User;
-use src\core\entities\Person;
-
 use src\core\repositories\UsersRepositoryInterface;
 use src\core\repositories\PersonsRepositoryInterface;
 use src\core\repositories\requests\UserSearchRequest;
-use src\core\repositories\requests\PersonSearchRequest;
 
 use src\core\services\EncrypterServiceInterface;
 
@@ -41,7 +37,6 @@ class UpdateUserUseCase
       throw new \InvalidArgumentException('User must have a Person');
     }
 
-    // Garante que todos os campos obrigatórios estejam preenchidos
       $finalName = ($name !== null && $name !== '') ? $name : $person->getName();
       $finalEmail = ($email !== null && $email !== '') ? $email : $person->getEmail();
       $finalPhone = ($phone !== null && $phone !== '') ? $phone : ($person->getPhone() ?? '');
@@ -51,7 +46,6 @@ class UpdateUserUseCase
         : $user->getPasswordHash();
       $finalIsAdmin = $is_admin;
 
-      // Atualiza os objetos para refletir o novo estado
       $person->setName($finalName);
       $person->setEmail($finalEmail);
       $person->setPhone($finalPhone);
@@ -59,7 +53,6 @@ class UpdateUserUseCase
       $user->setPasswordHash($finalPasswordHash);
       $user->setIsAdmin($finalIsAdmin);
 
-      // O método update do repositório já converte string vazia para null ao enviar para o banco
       $this->usersRepository->update($user);
   }
 }

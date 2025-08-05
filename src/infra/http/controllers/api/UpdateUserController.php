@@ -17,15 +17,14 @@ class UpdateUserController
 
   public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
   {
-  $data = $request->getParsedBody();
-  $userId = (int) ($args['id'] ?? 0);
-  $name = $data['name'] ?? '';
-  $email = $data['email'] ?? '';
-  $phone = $data['phone'] ?? '';
-  $login = $data['login'] ?? '';
-  $password = $data['password'] ?? '';
-  // Checkbox: se não enviado, é false
-  $isAdmin = isset($data['is_admin']) && ($data['is_admin'] === '1' || $data['is_admin'] === 'on' || $data['is_admin'] === 1);
+    $data = $request->getParsedBody();
+    $userId = (int) ($args['id'] ?? 0);
+    $name = $data['name'] ?? '';
+    $email = $data['email'] ?? '';
+    $phone = $data['phone'] ?? '';
+    $login = $data['login'] ?? '';
+    $password = $data['password'] ?? '';
+    $isAdmin = (bool) $data['isAdmin'] ?? null;
 
     $updateUserUseCase = $this->container->get('updateUserUseCase');
 
