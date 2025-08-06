@@ -1,6 +1,7 @@
 <?php
 
 use src\infra\contexts\AuthContext;
+use src\infra\contexts\AdminPagesContext;
 
 return [
   "authContext" => function ($container) {
@@ -9,4 +10,7 @@ return [
       $container->get('usersRepository')
     );
   },
+  "adminPagesContext" => function ($container) {
+    return new AdminPagesContext();
+  }
 ];
