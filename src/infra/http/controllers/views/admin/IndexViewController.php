@@ -2,33 +2,23 @@
 
 namespace src\infra\http\controllers\views\admin;
 
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use src\presentation\AdminPage;
+use src\infra\http\controllers\ViewController;
 
-
-class IndexViewController
+class IndexViewController extends ViewController
 {
-  private ContainerInterface $container;
-
-  public function __construct(ContainerInterface $container)
-  {
-    $this->container = $container;
-  }
-
   public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
   {
-    $page = new AdminPage(
-      data: [
-        'currentPage' => 'dashboard'
-      ],
-      template: 'index.html.twig',
-      contexts: [
-        'auth' => $this->container->get('authContext')
-      ]
+    $html = $this->renderView(
+      'admin/index.html.twig',
+      [],
+      [
+        'auth' => $this->container->get('authContext'),
+        'adminPages' => $this->container->get('adminPagesContext')
+        ]
     );
-    $response->getBody()->write($page->fetch());
+    $response->getBody()->write($html);
     return $response->withHeader('Content-Type', 'text/html');
   }
 }

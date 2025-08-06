@@ -5,24 +5,16 @@ namespace src\infra\http\controllers\views;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use src\presentation\Page;
+use src\infra\http\controllers\ViewController;
 
-
-class AuthenticateViewController
+class AuthenticateViewController extends ViewController
 {
-  private ContainerInterface $container;
-
-  public function __construct(ContainerInterface $container)
-  {
-    $this->container = $container;
-  }
-
   public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
   {
-    $page = new Page([], 'login.html.twig', '/presentation/views', '/assets/app/', [
-      'auth' => $this->container->get('authContext')
-    ]);
-    $response->getBody()->write($page->fetch());
+    $html = $this->renderView(
+      'login.html.twig'
+    );
+    $response->getBody()->write($html);
     return $response->withHeader('Content-Type', 'text/html');
   }
 }

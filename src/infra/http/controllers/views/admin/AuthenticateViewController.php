@@ -2,30 +2,21 @@
 
 namespace src\infra\http\controllers\views\admin;
 
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use src\presentation\AdminPage;
+use src\infra\http\controllers\ViewController;
 
-
-class AuthenticateViewController
+class AuthenticateViewController extends ViewController
 {
-  private ContainerInterface $container;
-
-  public function __construct(ContainerInterface $container)
+  public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = [])
   {
-    $this->container = $container;
-  }
-
-  public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
-  {
-    $page = new AdminPage(
-      data:[],
-      template: 'login.html.twig',
-      contexts: [
-      'auth' => $this->container->get('authContext')
-    ]);
-    $response->getBody()->write($page->fetch());
+    $authContext = $this->container->get('authContext');
+    $html = $this->renderView(
+      'admin/login.html.twig',
+      [],
+      ['auth' => $authContext]
+    );
+    $response->getBody()->write($html);
     return $response->withHeader('Content-Type', 'text/html');
   }
 }
