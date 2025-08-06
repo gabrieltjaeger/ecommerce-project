@@ -1,13 +1,12 @@
 <?php
 namespace src\infra\contexts;
 
-use src\core\contexts\AuthContextInterface;
 use src\core\entities\User;
 use src\core\services\SessionServiceInterface;
 use src\core\repositories\UsersRepositoryInterface;
 use src\core\repositories\requests\UserSearchRequest;
 
-class AuthContext implements AuthContextInterface
+class AuthContext
 {
     public function __construct(
         private SessionServiceInterface $sessionService,
