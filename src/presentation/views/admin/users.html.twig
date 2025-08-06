@@ -1,5 +1,4 @@
-
-{% extends 'base.html.twig' %}
+{% extends '/admin/base.html.twig' %}
 
 {% block title %}Painel Admin
 {% endblock %}
@@ -17,7 +16,7 @@
 						{ 'href': '/admin', 'label': 'Home' },
 						{ 'href': '/admin/users', 'label': 'Usuários' }
 					] %}
-					{% include 'components/_breadcrumb.html.twig' with { items: breadcrumb_items } %}
+					{% include 'admin/components/_breadcrumb.html.twig' with { items: breadcrumb_items } %}
 				</div>
 			</div>
 		</div>
@@ -60,7 +59,7 @@
 							</tbody>
 						</table>
 					{% endset %}
-					{% include 'components/_card.html.twig' with {
+					{% include 'admin/components/_card.html.twig' with {
 						card_header: null,
 						outline: false,
 						card_body: card_body

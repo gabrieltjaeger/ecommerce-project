@@ -9,14 +9,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/> {% block styles %}{% endblock %}
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-		<link rel="stylesheet" href={{ asset('plugins/fontawesome-free/css/all.min.css') }}>
-		<link rel="stylesheet" href={{ asset('dist/css/adminlte.min.css') }}>
+		<link rel="stylesheet" href={{ asset('../admin/plugins/fontawesome-free/css/all.min.css') }}>
+		<link rel="stylesheet" href={{ asset('../admin/dist/css/adminlte.min.css') }}>
 	</head>
 	<body class="hold-transition sidebar-mini">
 		<div class="wrapper">
 
-			{% include 'components/_navbar.html.twig' %}
-			{% include 'components/_sidebar.html.twig' %}
+			{% include 'admin/components/_navbar.html.twig' %}
+			{% include 'admin/components/_sidebar.html.twig' %}
 
 			{% block content %}{% endblock %}
 
@@ -28,10 +28,10 @@
 			</aside>
 
 
-			{% include 'components/_footer.html.twig' %}
+			{% include 'admin/components/_footer.html.twig' %}
 		</div>
-		<script src={{ asset('plugins/jquery/jquery.min.js') }}></script>
-		<script src={{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
-		<script src={{ asset('dist/js/adminlte.min.js') }}></script>
+		<script src={{ asset('../admin/plugins/jquery/jquery.min.js') }}></script>
+		<script src={{ asset('../admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
+		<script src={{ asset('../admin/dist/js/adminlte.min.js') }}></script>
 	</body>
 </html>

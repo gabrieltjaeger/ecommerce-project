@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '/admin/base.html.twig' %}
 
 {% block title %}Painel Admin
 {% endblock %}
@@ -17,7 +17,7 @@
 							{ 'href': '#', 'label': 'Home' },
 							{ 'label': 'Starter Page' }
 						] %}
-						{% include 'components/_breadcrumb.html.twig' with { items: breadcrumb_items } %}
+						{% include 'admin/components/_breadcrumb.html.twig' with { items: breadcrumb_items } %}
 					</div>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 							<a href="#" class="card-link">Card link</a>
 							<a href="#" class="card-link">Another link</a>
 						{% endset %}
-						{% include 'components/_card.html.twig' with {
+						{% include 'admin/components/_card.html.twig' with {
 							card_header: null,
 							outline: false,
 							card_body: card1_body
@@ -50,7 +50,7 @@
 							<a href="#" class="card-link">Card link</a>
 							<a href="#" class="card-link">Another link</a>
 						{% endset %}
-						{% include 'components/_card.html.twig' with {
+						{% include 'admin/components/_card.html.twig' with {
 							card_header: null,
 							outline: true,
 							card_body: card2_body
@@ -63,7 +63,7 @@
 							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 							<a href="#" class="btn btn-primary">Go somewhere</a>
 						{% endset %}
-						{% include 'components/_card.html.twig' with {
+						{% include 'admin/components/_card.html.twig' with {
 							card_header: 'Featured',
 							outline: false,
 							card_body: card3_body
@@ -75,7 +75,7 @@
 							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 							<a href="#" class="btn btn-primary">Go somewhere</a>
 						{% endset %}
-						{% include 'components/_card.html.twig' with {
+						{% include 'admin/components/_card.html.twig' with {
 							card_header: 'Featured',
 							outline: true,
 							card_body: card4_body

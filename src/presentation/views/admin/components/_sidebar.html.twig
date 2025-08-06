@@ -1,11 +1,11 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="/admin" class="brand-link">
-    <img src={{ asset('dist/img/AdminLTELogo.png') }} alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <img src={{ asset('../admin/dist/img/AdminLTELogo.png') }} alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">Painel Admin</span>
   </a>
   <div class="sidebar">
-    {% include 'components/_user-panel.html.twig' %}
+    {% include 'admin/components/_user-panel.html.twig' %}
     <!-- SidebarSearch Form -->
     <div class="form-inline">
       <div class="input-group" data-widget="sidebar-search">
@@ -19,7 +19,7 @@
     </div>
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        {% for page in pages %}
+        {% for page in adminPages %}
           <li class="nav-item">
             <a href="{{ page.route }}" class="nav-link{% if currentPage == page.key %} active{% endif %}">
               <i class="nav-icon {{ page.icon }}"></i>

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '/admin/base.html.twig' %}
 
 {% block title %}Painel Admin
 {% endblock %}
@@ -17,7 +17,7 @@
             { 'href': '/admin/users', 'label': 'Usuários' },
             { 'label': 'Cadastrar Usuário' }
           ] %}
-						{% include 'components/_breadcrumb.html.twig' with { items: breadcrumb_items } %}
+						{% include 'admin/components/_breadcrumb.html.twig' with { items: breadcrumb_items } %}
 					</div>
 				</div>
 			</div>
@@ -28,16 +28,16 @@
 					<div class="col-lg-12">
 						{% set card_body %}
 						<form role="form" action="/admin/users/create" method="post">
-							{% include 'components/_form-group.html.twig' with { id: 'name', label: 'Nome', name: 'name', placeholder: 'Digite o nome' } %}
-							{% include 'components/_form-group.html.twig' with { id: 'login', label: 'Login', name: 'login', placeholder: 'Digite o login' } %}
-							{% include 'components/_form-group.html.twig' with { id: 'phone', label: 'Telefone', name: 'phone', type: 'tel', placeholder: 'Digite o telefone' } %}
-							{% include 'components/_form-group.html.twig' with { id: 'email', label: 'E-mail', name: 'email', type: 'email', placeholder: 'Digite o e-mail' } %}
-							{% include 'components/_form-group.html.twig' with { id: 'password', label: 'Senha', name: 'password', type: 'password', placeholder: 'Digite a senha' } %}
-							{% include 'components/_checkbox.html.twig' with { name: 'is_admin', label: 'Acesso de Administrador' } %}
+							{% include 'admin/components/_form-group.html.twig' with { id: 'name', label: 'Nome', name: 'name', placeholder: 'Digite o nome' } %}
+							{% include 'admin/components/_form-group.html.twig' with { id: 'login', label: 'Login', name: 'login', placeholder: 'Digite o login' } %}
+							{% include 'admin/components/_form-group.html.twig' with { id: 'phone', label: 'Telefone', name: 'phone', type: 'tel', placeholder: 'Digite o telefone' } %}
+							{% include 'admin/components/_form-group.html.twig' with { id: 'email', label: 'E-mail', name: 'email', type: 'email', placeholder: 'Digite o e-mail' } %}
+							{% include 'admin/components/_form-group.html.twig' with { id: 'password', label: 'Senha', name: 'password', type: 'password', placeholder: 'Digite a senha' } %}
+							{% include 'admin/components/_checkbox.html.twig' with { name: 'is_admin', label: 'Acesso de Administrador' } %}
 							<button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
 						</form>
 						{% endset %}
-						{% include 'components/_card.html.twig' with {
+						{% include 'admin/components/_card.html.twig' with {
             card_header: 'Novo Usuário',
             outline: false,
             card_body: card_body
