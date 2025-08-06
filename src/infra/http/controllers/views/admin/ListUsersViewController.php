@@ -1,20 +1,12 @@
 <?php
 namespace src\infra\http\controllers\views;
 
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use src\presentation\AdminPage;
+use src\infra\http\controllers\ViewController;
 
-class ListUsersViewController
+class ListUsersViewController extends ViewController
 {
-  private ContainerInterface $container;
-
-  public function __construct(ContainerInterface $container)
-  {
-    $this->container = $container;
-  }
-
   public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
   {
     $page = (int) ($args['page'] ?? null);
@@ -23,18 +15,18 @@ class ListUsersViewController
     $listUsersUseCase = $this->container->get('listUsersUseCase');
     $users = $listUsersUseCase->execute($page, $name);
 
-    $page = new AdminPage(
-      data: [
+    $html = $this->renderView(
+      'admin/users.html.twig',
+      [
         'users' => $users,
         'currentPage' => 'users'
       ],
-      template: 'users.html.twig',
-      contexts: [
-        'auth' => $this->container->get('authContext')
+      [
+        'auth' => $this->container->get('authContext'),
+        'adminPages' => $this->container->get('adminPagesContext')
       ]
     );
-
-    $response->getBody()->write($page->fetch());
+    $response->getBody()->write($html);
     return $response->withHeader('Content-Type', 'text/html');
   }
 }
