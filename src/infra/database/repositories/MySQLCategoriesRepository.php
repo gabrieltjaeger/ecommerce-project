@@ -46,7 +46,7 @@ class MySQLCategoriesRepository implements CategoriesRepositoryInterface
       sprintf('SELECT * FROM %s %s', self::TABLE_NAME, $where),
       $params
     );
-    return array_map([MySQLCategoryMapper::class, 'fromArray'], $rows);
+    return array_map([MySQLCategoryMapper::class, 'toDomain'], $rows);
   }
 
   public function create(Category $category): void

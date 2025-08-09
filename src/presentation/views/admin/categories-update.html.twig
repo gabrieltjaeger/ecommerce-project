@@ -1,0 +1,45 @@
+{% extends '/admin/base.html.twig' %}
+
+{% block title %}Painel Admin
+{% endblock %}
+
+{% block content %}
+        <div class="content-wrapper">
+                <div class="content-header">
+                        <div class="container-fluid">
+                                <div class="row mb-2">
+                                        <div class="col-sm-6">
+                                                <h1 class="m-0">Editar Categoria</h1>
+                                        </div>
+                                        <div class="col-sm-6">
+                                                {% set breadcrumb_items = [
+                                                { 'href': '/admin', 'label': 'Home' },
+                                                { 'href': '/admin/categories', 'label': 'Categorias' },
+                                                { 'label': 'Editar Categoria' }
+                                        ] %}
+                                                {% include 'admin/components/_breadcrumb.html.twig' with { items: breadcrumb_items } %}
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <div class="content">
+                        <div class="container-fluid">
+                                <div class="row">
+                                        <div class="col-lg-12">
+                                                {% set card_body %}
+                                                <form role="form" action="/admin/categories/{{ category.id }}" method="post">
+                                                        {% include 'admin/components/_form-group.html.twig' with { id: 'category', label: 'Categoria', name: 'category', placeholder: 'Digite o nome da categoria', value: category.category } %}
+                                                        <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+                                                </form>
+                                                {% endset %}
+                                                {% include 'admin/components/_card.html.twig' with {
+                                                card_header: 'Editar Categoria',
+                                                outline: false,
+                                                card_body: card_body
+                                        } %}
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+{% endblock %}
