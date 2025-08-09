@@ -16,7 +16,6 @@ use src\core\use_cases\CreateProductUseCase;
 use src\core\use_cases\UpdateProductUseCase;
 use src\core\use_cases\DeleteProductUseCase;
 
-
 return [
   'authenticateUseCase' => function ($c) {
     return new AuthenticateUseCase(
@@ -100,7 +99,8 @@ return [
   },
   'deleteProductUseCase' => function ($c) {
     return new DeleteProductUseCase(
-      $c->get('productsRepository')
+      $c->get('productsRepository'),
+      $c->get('categoriesRepository')
     );
   }
 ];

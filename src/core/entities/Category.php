@@ -1,6 +1,7 @@
 <?php
 namespace src\core\entities;
 
+use DateTime;
 use src\core\entities\Entity;
 
 class Category extends Entity
@@ -10,8 +11,8 @@ class Category extends Entity
   public function __construct(
     ?string $id = null,
     ?string $category = null,
-    ?string $created_at = null,
-    ?string $updated_at = null
+    ?DateTime $created_at = null,
+    ?DateTime $updated_at = null
   ) {
     parent::__construct($id, $created_at, $updated_at);
     $this->category = $category;
