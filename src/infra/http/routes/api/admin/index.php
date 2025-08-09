@@ -10,6 +10,9 @@ use src\infra\http\controllers\api\DeleteUserController;
 use src\infra\http\controllers\api\CreateCategoryController;
 use src\infra\http\controllers\api\UpdateCategoryController;
 use src\infra\http\controllers\api\DeleteCategoryController;
+use src\infra\http\controllers\api\CreateProductController;
+use src\infra\http\controllers\api\UpdateProductController;
+use src\infra\http\controllers\api\DeleteProductController;
 
 use src\infra\http\middlewares\EnsureAuthenticatedMiddleware;
 
@@ -23,5 +26,8 @@ return function (App $app) {
         $group->post('/categories/create', CreateCategoryController::class);
         $group->post('/categories/{id}', UpdateCategoryController::class);
         $group->get('/categories/{id}/delete', DeleteCategoryController::class);
+        $group->post('/products/create', CreateProductController::class);
+        $group->post('/products/{id}', UpdateProductController::class);
+        $group->get('/products/{id}/delete', DeleteProductController::class);
     })->add(new EnsureAuthenticatedMiddleware());
 };

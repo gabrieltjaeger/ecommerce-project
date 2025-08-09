@@ -10,7 +10,11 @@ use src\core\use_cases\FetchCategoryUseCase;
 use src\core\use_cases\CreateCategoryUseCase;
 use src\core\use_cases\UpdateCategoryUseCase;
 use src\core\use_cases\DeleteCategoryUseCase;
-
+use src\core\use_cases\ListProductsUseCase;
+use src\core\use_cases\FetchProductUseCase;
+use src\core\use_cases\CreateProductUseCase;
+use src\core\use_cases\UpdateProductUseCase;
+use src\core\use_cases\DeleteProductUseCase;
 
 return [
   'authenticateUseCase' => function ($c) {
@@ -70,6 +74,32 @@ return [
   },
   'deleteCategoryUseCase' => function ($c) {
     return new DeleteCategoryUseCase(
+      $c->get('categoriesRepository'),
+    );
+  },
+  'listProductsUseCase' => function ($c) {
+    return new ListProductsUseCase(
+      $c->get('productsRepository')
+    );
+  },
+  'fetchProductUseCase' => function ($c) {
+    return new FetchProductUseCase(
+      $c->get('productsRepository')
+    );
+  },
+  'createProductUseCase' => function ($c) {
+    return new CreateProductUseCase(
+      $c->get('productsRepository')
+    );
+  },
+  'updateProductUseCase' => function ($c) {
+    return new UpdateProductUseCase(
+      $c->get('productsRepository')
+    );
+  },
+  'deleteProductUseCase' => function ($c) {
+    return new DeleteProductUseCase(
+      $c->get('productsRepository'),
       $c->get('categoriesRepository')
     );
   }
