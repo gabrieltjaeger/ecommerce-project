@@ -1,0 +1,68 @@
+{% extends '/admin/base.html.twig' %}
+
+{% block title %}Painel Admin
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+        <div class="content-header">
+                <div class="container-fluid">
+                        <div class="row mb-2">
+                                <div class="col-sm-6">
+                                        <h1 class="m-0">Lista de Produtos</h1>
+                                </div>
+                                <div class="col-sm-6">
+                                        {% set breadcrumb_items = [
+                                                { 'href': '/admin', 'label': 'Home' },
+                                                { 'href': '/admin/products', 'label': 'Produtos' }
+                                        ] %}
+                                        {% include 'admin/components/_breadcrumb.html.twig' with { items: breadcrumb_items } %}
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <div class="content">
+                <div class="container-fluid">
+                        <div class="row">
+                                <div class="col-lg-12">
+                                        {% set card_body %}
+                                                <div class="mb-3 col-2 px-0">
+                                                        <a href="/admin/products/create" class="btn btn-block btn-primary">Cadastrar Produto</a>
+                                                </div>
+                                                <table id="example2" class="table table-bordered table-hover">
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>Produto</th>
+                                                                        <th>Preço</th>
+                                                                        <th>Ações</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                {% for product in products %}
+                                                                        <tr>
+                                                                                <td>{{ product.product }}</td>
+                                                                                <td>{{ product.price }}</td>
+                                                                                <td>
+                                                                                        <a href="/admin/products/{{ product.id }}" class="btn btn-primary btn-xs">
+                                                                                                <i class="fa fa-edit"></i>
+                                                                                                Editar</a>
+                                                                                        <a href="/admin/products/{{ product.id }}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs">
+                                                                                                <i class="fa fa-trash"></i>
+                                                                                                Excluir</a>
+                                                                                </td>
+                                                                        </tr>
+                                                                {% endfor %}
+                                                        </tbody>
+                                                </table>
+                                        {% endset %}
+                                        {% include 'admin/components/_card.html.twig' with {
+                                                card_header: null,
+                                                outline: false,
+                                                card_body: card_body
+                                        } %}
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+{% endblock %}
