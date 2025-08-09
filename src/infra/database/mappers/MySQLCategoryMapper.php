@@ -9,10 +9,10 @@ class MySQLCategoryMapper extends Mapper
   public static function toDomain(array $row): Category
   {
     return new Category(
-      $row['id'] ?? null,
-      $row['category'] ?? null,
-      $row['created_at'] ?? null,
-      $row['updated_at'] ?? null
+      (int) $row['id'] ?? null,
+      (string) $row['category'] ?? null,
+      isset($row['created_at']) ? new \DateTime($row['created_at']) : null,
+      isset($row['updated_at']) ? new \DateTime($row['updated_at']) : null
     );
   }
 

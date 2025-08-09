@@ -4,8 +4,8 @@ use Slim\Routing\RouteCollectorProxy;
 
 use src\infra\http\middlewares\EnsureAuthenticatedMiddleware;
 
-use src\infra\http\controllers\views\ListUsersViewController;
-use src\infra\http\controllers\views\ListCategoriesViewController;
+use src\infra\http\controllers\views\admin\ListUsersViewController;
+use src\infra\http\controllers\views\admin\ListCategoriesViewController;
 
 use src\infra\http\controllers\views\admin\AuthenticateViewController;
 use src\infra\http\controllers\views\admin\CreateUserViewController;

@@ -1,5 +1,5 @@
 <?php
-namespace src\infra\http\controllers\views;
+namespace src\infra\http\controllers\views\admin;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
