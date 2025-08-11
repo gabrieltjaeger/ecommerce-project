@@ -13,6 +13,8 @@ use src\infra\http\controllers\api\DeleteCategoryController;
 use src\infra\http\controllers\api\CreateProductController;
 use src\infra\http\controllers\api\UpdateProductController;
 use src\infra\http\controllers\api\DeleteProductController;
+use src\infra\http\controllers\api\AddProductToCategoryController;
+use src\infra\http\controllers\api\RemoveProductFromCategoryController;
 
 use src\infra\http\middlewares\EnsureAuthenticatedMiddleware;
 
@@ -29,5 +31,9 @@ return function (App $app) {
         $group->post('/products/create', CreateProductController::class);
         $group->post('/products/{id}', UpdateProductController::class);
         $group->get('/products/{id}/delete', DeleteProductController::class);
+
+    // Category products management
+    $group->post('/categories/{id}/products/add', AddProductToCategoryController::class);
+    $group->get('/categories/{id}/products/{productId}/remove', RemoveProductFromCategoryController::class);
     })->add(new EnsureAuthenticatedMiddleware());
 };

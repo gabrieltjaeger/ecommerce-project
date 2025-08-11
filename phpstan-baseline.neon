@@ -1,0 +1,511 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#2 \\$created_at of method src\\\\core\\\\entities\\\\Entity\\:\\:__construct\\(\\) expects DateTime\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/core/entities/Cart.php
+
+		-
+			message: "#^Parameter \\#3 \\$updated_at of method src\\\\core\\\\entities\\\\Entity\\:\\:__construct\\(\\) expects DateTime\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/core/entities/Cart.php
+
+		-
+			message: "#^Property src\\\\core\\\\entities\\\\Cart\\:\\:\\$session_id has no type specified\\.$#"
+			count: 1
+			path: src/core/entities/Cart.php
+
+		-
+			message: "#^Property src\\\\core\\\\entities\\\\Entity\\:\\:\\$created_at has no type specified\\.$#"
+			count: 1
+			path: src/core/entities/Entity.php
+
+		-
+			message: "#^Property src\\\\core\\\\entities\\\\Entity\\:\\:\\$id has no type specified\\.$#"
+			count: 1
+			path: src/core/entities/Entity.php
+
+		-
+			message: "#^Property src\\\\core\\\\entities\\\\Entity\\:\\:\\$updated_at has no type specified\\.$#"
+			count: 1
+			path: src/core/entities/Entity.php
+
+		-
+			message: "#^Parameter \\#2 \\$created_at of method src\\\\core\\\\entities\\\\Entity\\:\\:__construct\\(\\) expects DateTime\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/core/entities/Order.php
+
+		-
+			message: "#^Parameter \\#3 \\$updated_at of method src\\\\core\\\\entities\\\\Entity\\:\\:__construct\\(\\) expects DateTime\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/core/entities/Order.php
+
+		-
+			message: "#^Method src\\\\core\\\\services\\\\ContextProviderServiceInterface\\:\\:getGlobals\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/core/services/ContextProviderServiceInterface.php
+
+		-
+			message: "#^Method src\\\\core\\\\services\\\\TemplateRendererServiceInterface\\:\\:render\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/core/services/TemplateRendererServiceInterface.php
+
+		-
+			message: "#^Parameter \\#1 \\$id of method src\\\\core\\\\repositories\\\\CategoriesRepositoryInterface\\:\\:delete\\(\\) expects string, int given\\.$#"
+			count: 1
+			path: src/core/use_cases/DeleteCategoryUseCase.php
+
+		-
+			message: "#^Parameter \\$id of class src\\\\core\\\\repositories\\\\requests\\\\CategorySearchRequest constructor expects string\\|null, int given\\.$#"
+			count: 1
+			path: src/core/use_cases/FetchCategoryUseCase.php
+
+		-
+			message: "#^Parameter \\$id of class src\\\\core\\\\repositories\\\\requests\\\\UserSearchRequest constructor expects string\\|null, int given\\.$#"
+			count: 1
+			path: src/core/use_cases/FetchUserUseCase.php
+
+		-
+			message: "#^Method src\\\\core\\\\use_cases\\\\ListCategoriesUseCase\\:\\:execute\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/core/use_cases/ListCategoriesUseCase.php
+
+		-
+			message: "#^Method src\\\\core\\\\use_cases\\\\ListCategoryProductsUseCase\\:\\:execute\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 2
+			path: src/core/use_cases/ListCategoryProductsUseCase.php
+
+		-
+			message: "#^Method src\\\\core\\\\use_cases\\\\ListProductsUseCase\\:\\:execute\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/core/use_cases/ListProductsUseCase.php
+
+		-
+			message: "#^Method src\\\\core\\\\use_cases\\\\ListUsersUseCase\\:\\:execute\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/core/use_cases/ListUsersUseCase.php
+
+		-
+			message: "#^Parameter \\$id of class src\\\\core\\\\repositories\\\\requests\\\\CategorySearchRequest constructor expects string\\|null, int given\\.$#"
+			count: 1
+			path: src/core/use_cases/UpdateCategoryUseCase.php
+
+		-
+			message: "#^Parameter \\$id of class src\\\\core\\\\repositories\\\\requests\\\\UserSearchRequest constructor expects string\\|null, int given\\.$#"
+			count: 1
+			path: src/core/use_cases/UpdateUserUseCase.php
+
+		-
+			message: "#^Property src\\\\core\\\\use_cases\\\\UpdateUserUseCase\\:\\:\\$personsRepository is never read, only written\\.$#"
+			count: 1
+			path: src/core/use_cases/UpdateUserUseCase.php
+
+		-
+			message: "#^Method src\\\\infra\\\\contexts\\\\AdminPagesContext\\:\\:getAdminPages\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/contexts/AdminPagesContext.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:buildSelectColumns\\(\\) has parameter \\$columns with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:buildWhereClause\\(\\) has parameter \\$conditions with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:buildWhereClause\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:delete\\(\\) has parameter \\$where with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:insert\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:query\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:query\\(\\) has parameter \\$params with no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:query\\(\\) has parameter \\$rawQuery with no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:select\\(\\) has parameter \\$params with no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:select\\(\\) has parameter \\$rawQuery with no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:select\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:setParams\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:setParams\\(\\) has parameter \\$parameters with no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:setParams\\(\\) has parameter \\$statement with no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:update\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\SQL\\:\\:update\\(\\) has parameter \\$where with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Property src\\\\infra\\\\database\\\\SQL\\:\\:\\$DBNAME has no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Property src\\\\infra\\\\database\\\\SQL\\:\\:\\$HOSTNAME has no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Property src\\\\infra\\\\database\\\\SQL\\:\\:\\$PASSWORD has no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Property src\\\\infra\\\\database\\\\SQL\\:\\:\\$USERNAME has no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Property src\\\\infra\\\\database\\\\SQL\\:\\:\\$conn has no type specified\\.$#"
+			count: 1
+			path: src/infra/database/SQL.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\Mapper\\:\\:extractPrefixed\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/Mapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\Mapper\\:\\:extractPrefixed\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/Mapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\Mapper\\:\\:getValuesWithPrefix\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/Mapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\Mapper\\:\\:getValuesWithPrefix\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/Mapper.php
+
+		-
+			message: "#^Cannot instantiate class src\\\\core\\\\entities\\\\Address via private constructor src\\\\core\\\\entities\\\\Address\\:\\:__construct\\(\\)\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLAddressMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLAddressMapper\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLAddressMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLAddressMapper\\:\\:toDomain\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLAddressMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLCartMapper\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLCartMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLCartMapper\\:\\:toDomain\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLCartMapper.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 2
+			path: src/infra/database/mappers/MySQLCategoryMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLCategoryMapper\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLCategoryMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLCategoryMapper\\:\\:toDomain\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLCategoryMapper.php
+
+		-
+			message: "#^Parameter \\#1 \\$id of class src\\\\core\\\\entities\\\\Category constructor expects string\\|null, int given\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLCategoryMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLOrderMapper\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLOrderMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLOrderMapper\\:\\:toDomain\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLOrderMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLPersonMapper\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLPersonMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLPersonMapper\\:\\:toDomain\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLPersonMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLProductMapper\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLProductMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLProductMapper\\:\\:toDomain\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLProductMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLSessionMapper\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLSessionMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLSessionMapper\\:\\:toDomain\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLSessionMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLUserMapper\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLUserMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\database\\\\mappers\\\\MySQLUserMapper\\:\\:toDomain\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/database/mappers/MySQLUserMapper.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\ViewController\\:\\:renderView\\(\\) has parameter \\$contexts with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/ViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\ViewController\\:\\:renderView\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/ViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\AddProductToCategoryController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/AddProductToCategoryController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\AuthenticateController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/AuthenticateController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\CreateCategoryController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/CreateCategoryController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\CreateProductController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/CreateProductController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\CreateUserController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/CreateUserController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\DeleteCategoryController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/DeleteCategoryController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\DeleteProductController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/DeleteProductController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\DeleteUserController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/DeleteUserController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\LogoutController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/LogoutController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\LogoutController\\:\\:logout\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/LogoutController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\RemoveProductFromCategoryController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/RemoveProductFromCategoryController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\UpdateCategoryController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/UpdateCategoryController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\UpdateProductController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/UpdateProductController.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/UpdateUserController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\api\\\\UpdateUserController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/api/UpdateUserController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\AuthenticateViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/AuthenticateViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\AuthenticateViewController\\:\\:__invoke\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/AuthenticateViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\AuthenticateViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/AuthenticateViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\CategoryProductsViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/CategoryProductsViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\CreateCategoryViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/CreateCategoryViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\CreateProductViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/CreateProductViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\CreateUserViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/CreateUserViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\IndexViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/IndexViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\ListCategoriesViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/ListCategoriesViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\ListProductsViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/ListProductsViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\ListUsersViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/ListUsersViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\UpdateCategoryViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/UpdateCategoryViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\UpdateProductViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/UpdateProductViewController.php
+
+		-
+			message: "#^Method src\\\\infra\\\\http\\\\controllers\\\\views\\\\admin\\\\UpdateUserViewController\\:\\:__invoke\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/http/controllers/views/admin/UpdateUserViewController.php
+
+		-
+			message: "#^Property src\\\\infra\\\\services\\\\SessionService\\:\\:\\$usersRepository is never read, only written\\.$#"
+			count: 1
+			path: src/infra/services/SessionService.php
+
+		-
+			message: "#^Method src\\\\infra\\\\services\\\\TwigTemplateRendererService\\:\\:render\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/services/TwigTemplateRendererService.php
+
+		-
+			message: "#^Method src\\\\infra\\\\services\\\\TwigTemplateRendererService\\:\\:renderWithContext\\(\\) has parameter \\$contexts with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/services/TwigTemplateRendererService.php
+
+		-
+			message: "#^Method src\\\\infra\\\\services\\\\TwigTemplateRendererService\\:\\:renderWithContext\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/services/TwigTemplateRendererService.php
+
+		-
+			message: "#^Property src\\\\infra\\\\services\\\\TwigTemplateRendererService\\:\\:\\$assetsPath is never read, only written\\.$#"
+			count: 1
+			path: src/infra/services/TwigTemplateRendererService.php
+
+		-
+			message: "#^Method src\\\\infra\\\\services\\\\ViewContextProviderService\\:\\:getGlobals\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/infra/services/ViewContextProviderService.php

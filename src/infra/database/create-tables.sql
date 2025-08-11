@@ -88,7 +88,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `db_ecommerce`.`carts`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_ecommerce`.`carts` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `session_id` VARCHAR(64) NOT NULL,
   `user_id` INT(11) NULL DEFAULT NULL,
   `address_id` INT(11) NULL DEFAULT NULL,
@@ -116,7 +116,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `db_ecommerce`.`products`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_ecommerce`.`products` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `product` VARCHAR(64) NOT NULL,
   `price` DECIMAL(10,2) NOT NULL,
   `width` DECIMAL(10,2) NOT NULL,
@@ -222,20 +222,27 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_ecommerce`.`products_categories`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_ecommerce`.`products_categories`;
+
 CREATE TABLE IF NOT EXISTS `db_ecommerce`.`products_categories` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `category_id` INT(11) NOT NULL,
   `product_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`, `product_id`),
-  INDEX `fk_products_categories_products_idx` (`product_id` ASC) VISIBLE,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_category_product` (`category_id`, `product_id`),
+  INDEX `fk_products_categories_category_idx` (`category_id` ASC) VISIBLE,
+  INDEX `fk_products_categories_product_idx` (`product_id` ASC) VISIBLE,
   CONSTRAINT `fk_productscategories_categories`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`category_id`)
     REFERENCES `db_ecommerce`.`categories` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_productscategories_products`
     FOREIGN KEY (`product_id`)
     REFERENCES `db_ecommerce`.`products` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;

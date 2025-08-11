@@ -46,7 +46,7 @@ class MySQLOrdersRepository implements OrdersRepositoryInterface
             sprintf('SELECT * FROM %s %s', self::TABLE_NAME, $where),
             $params
         );
-        return array_map([MySQLOrderMapper::class, 'fromArray'], $rows);
+        return array_map([MySQLOrderMapper::class, 'toDomain'], $rows);
     }
 
     public function create(Order $order): void

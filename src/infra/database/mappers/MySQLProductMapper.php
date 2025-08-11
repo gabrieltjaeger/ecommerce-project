@@ -2,6 +2,7 @@
 
 namespace src\infra\database\mappers;
 
+use DateTime;
 use src\core\entities\Product;
 use src\infra\database\mappers\Mapper;
 
@@ -18,8 +19,8 @@ class MySQLProductMapper extends Mapper
       $row['length'] ?? null,
       $row['weight'] ?? null,
       $row['url'] ?? null,
-      isset($row['created_at']) ? $row['created_at'] : null,
-      isset($row['updated_at']) ? $row['updated_at'] : null
+      isset($row['created_at']) ? new DateTime($row['created_at']) : null,
+      isset($row['updated_at']) ? new DateTime($row['updated_at']) : null
     );
   }
 

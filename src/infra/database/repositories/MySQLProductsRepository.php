@@ -31,7 +31,7 @@ class MySQLProductsRepository implements ProductsRepositoryInterface
             return null;
         }
         $row = $rows[0];
-    return MySQLProductMapper::toDomain($row);
+        return MySQLProductMapper::toDomain($row);
     }
 
     public function list(ProductSearchRequest $request): array
@@ -50,26 +50,59 @@ class MySQLProductsRepository implements ProductsRepositoryInterface
             sprintf('SELECT * FROM %s %s', self::TABLE_NAME, $where),
             $params
         );
-    return array_map([MySQLProductMapper::class, 'fromArray'], $rows);
+        return array_map([MySQLProductMapper::class, 'toDomain'], $rows);
     }
 
     public function create(Product $product): void
     {
         $sql = new SQL();
-        $data = MySQLProductMapper::toArray($product);
-        $sql->insert(self::TABLE_NAME, $data);
+        $conn = $sql->getConnection();
+
+        $stmt = $conn->prepare('CALL create_product(?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([
+            $product->getProduct(),
+            $this->nullIfEmpty($product->getPrice()),
+            $this->nullIfEmpty($product->getWidth()),
+            $this->nullIfEmpty($product->getHeight()),
+            $this->nullIfEmpty($product->getLength()),
+            $this->nullIfEmpty($product->getWeight()),
+            $product->getUrl(),
+        ]);
     }
 
     public function update(Product $product): void
     {
+        if (!$product->getId()) {
+            throw new \InvalidArgumentException('Product must have a valid ID to be updated.');
+        }
+
         $sql = new SQL();
-        $data = MySQLProductMapper::toArray($product);
-        $sql->update(self::TABLE_NAME, $data, ['id' => $product->getId()]);
+        $conn = $sql->getConnection();
+
+        $stmt = $conn->prepare('CALL update_product(?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([
+            (int)$product->getId(),
+            $product->getProduct(),
+            $this->nullIfEmpty($product->getPrice()),
+            $this->nullIfEmpty($product->getWidth()),
+            $this->nullIfEmpty($product->getHeight()),
+            $this->nullIfEmpty($product->getLength()),
+            $this->nullIfEmpty($product->getWeight()),
+            $product->getUrl(),
+        ]);
     }
 
     public function delete(string $id): void
     {
         $sql = new SQL();
-        $sql->delete(self::TABLE_NAME, ['id' => $id]);
+        $conn = $sql->getConnection();
+
+        $stmt = $conn->prepare('CALL delete_product(?)');
+        $stmt->execute([(int)$id]);
+    }
+
+    private function nullIfEmpty(?string $value): ?string
+    {
+        return $value === '' ? null : $value;
     }
 }

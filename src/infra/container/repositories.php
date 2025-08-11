@@ -7,6 +7,7 @@ use src\infra\database\repositories\MySQLPersonsRepository;
 use src\infra\database\repositories\MySQLProductsRepository;
 use src\infra\database\repositories\MySQLSessionsRepository;
 use src\infra\database\repositories\MySQLUsersRepository;
+use src\infra\database\repositories\MySQLProductsCategoriesRepository;
 
 return [
   'addressesRepository' => function () {
@@ -26,6 +27,9 @@ return [
   },
   'productsRepository' => function () {
     return new MySQLProductsRepository();
+  },
+  'productsCategoriesRepository' => function () {
+    return new MySQLProductsCategoriesRepository();
   },
   'sessionsRepository' => function () {
     return new MySQLSessionsRepository();

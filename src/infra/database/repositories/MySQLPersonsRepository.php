@@ -61,7 +61,7 @@ class MySQLPersonsRepository implements PersonsRepositoryInterface
             sprintf('SELECT * FROM %s %s', self::TABLE_NAME, $where),
             $params
         );
-        return array_map([MySQLPersonMapper::class, 'fromArray'], $rows);
+        return array_map([MySQLPersonMapper::class, 'toDomain'], $rows);
     }
 
     public function create(Person $person): void

@@ -1,0 +1,96 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Produtos da Categoria{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Categoria: {{ category.category }}</h1>
+        </div>
+        <div class="col-sm-6">
+          {% set breadcrumb_items = [
+            { 'href': '/admin', 'label': 'Home' },
+            { 'href': '/admin/categories', 'label': 'Categorias' },
+            { 'label': 'Produtos da Categoria' }
+          ] %}
+          {% include 'admin/components/_breadcrumb.html.twig' with { items: breadcrumb_items } %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-lg-6">
+          {% set card_body %}
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Produto</th>
+                <th style="width: 150px;">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if inCategoryProducts|length == 0 %}
+                <tr><td colspan="3" class="text-center text-muted">Nenhum produto nessa categoria.</td></tr>
+              {% else %}
+                {% for p in inCategoryProducts %}
+                  <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.product }}</td>
+                    <td>
+                      <a class="btn btn-sm btn-danger" href="/admin/categories/{{ category.id }}/products/{{ p.id }}/remove">Remover</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+          {% endset %}
+          {% include 'admin/components/_card.html.twig' with { card_header: 'Produtos nessa categoria', outline: false, card_body: card_body } %}
+        </div>
+
+        <div class="col-lg-6">
+          {% set card_body %}
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Produto</th>
+                <th style="width: 150px;">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if uncategorizedProducts|length == 0 %}
+                <tr><td colspan="3" class="text-center text-muted">Sem produtos disponíveis.</td></tr>
+              {% else %}
+                {% for p in uncategorizedProducts %}
+                  <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.product }}</td>
+                    <td>
+                      <form method="post" action="/admin/categories/{{ category.id }}/products/add" style="display:inline;">
+                        <input type="hidden" name="product_id" value="{{ p.id }}">
+                        <button class="btn btn-sm btn-primary" type="submit">Adicionar</button>
+                      </form>
+                    </td>
+                  </tr>
+                {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+          {% endset %}
+          {% include 'admin/components/_card.html.twig' with { card_header: 'Produtos sem categoria', outline: false, card_body: card_body } %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

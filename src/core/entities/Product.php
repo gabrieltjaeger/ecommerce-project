@@ -1,6 +1,7 @@
 <?php
 namespace src\core\entities;
 
+use DateTime;
 use src\core\entities\Entity;
 
 class Product extends Entity
@@ -22,8 +23,8 @@ class Product extends Entity
     ?string $length = null,
     ?string $weight = null,
     ?string $url = null,
-    ?string $created_at = null,
-    ?string $updated_at = null
+    ?DateTime $created_at = null,
+    ?DateTime $updated_at = null
   ) {
     parent::__construct($id, $created_at, $updated_at);
     $this->product = $product;

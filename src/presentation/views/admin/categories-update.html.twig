@@ -30,6 +30,7 @@
                                                 <form role="form" action="/admin/categories/{{ category.id }}" method="post">
                                                         {% include 'admin/components/_form-group.html.twig' with { id: 'category', label: 'Categoria', name: 'category', placeholder: 'Digite o nome da categoria', value: category.category } %}
                                                         <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+                                                        <a href="/admin/categories/{{ category.id }}/products" class="btn btn-secondary mt-3">Gerenciar produtos</a>
                                                 </form>
                                                 {% endset %}
                                                 {% include 'admin/components/_card.html.twig' with {

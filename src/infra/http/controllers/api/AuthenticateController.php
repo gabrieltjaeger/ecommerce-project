@@ -38,9 +38,8 @@ class AuthenticateController
       $user = $result['user'];
       $session = $result['session'];
 
-
-      header('Location: /admin');
-      exit;
+      // Retorna um redirect response testável
+      return $response->withStatus(302)->withHeader('Location', '/admin');
     } catch (\Exception $e) {
       $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
       return $response->withStatus(401)->withHeader('Content-Type', 'application/json');

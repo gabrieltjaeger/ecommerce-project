@@ -46,7 +46,7 @@ class MySQLCartsRepository implements CartsRepositoryInterface
             sprintf('SELECT * FROM %s %s', self::TABLE_NAME, $where),
             $params
         );
-        return array_map([MySQLCartMapper::class, 'fromArray'], $rows);
+        return array_map([MySQLCartMapper::class, 'toDomain'], $rows);
     }
 
     public function create(Cart $cart): void

@@ -13,6 +13,7 @@ use src\infra\http\controllers\views\admin\IndexViewController;
 use src\infra\http\controllers\views\admin\UpdateUserViewController;
 use src\infra\http\controllers\views\admin\CreateCategoryViewController;
 use src\infra\http\controllers\views\admin\UpdateCategoryViewController;
+use src\infra\http\controllers\views\admin\CategoryProductsViewController;
 use src\infra\http\controllers\views\admin\CreateProductViewController;
 use src\infra\http\controllers\views\admin\UpdateProductViewController;
 
@@ -33,6 +34,7 @@ return function (App $app) {
     $group->get('/categories/create', CreateCategoryViewController::class);
 
     $group->get('/categories/{id}', UpdateCategoryViewController::class);
+  $group->get('/categories/{id}/products', CategoryProductsViewController::class);
     
     $group->get('/products', ListProductsViewController::class);
 
