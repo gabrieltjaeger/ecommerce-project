@@ -6,3 +6,4 @@ parameters:
     - src
   ignoreErrors:
     - '#File ends with a trailing whitespace#'
+  reportUnmatchedIgnoredErrors: false

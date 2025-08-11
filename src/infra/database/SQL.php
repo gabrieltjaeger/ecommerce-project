@@ -23,17 +23,17 @@ class SQL
   {
     return $this->conn;
   }
-  private static $HOSTNAME;
-  private static $USERNAME;
-  private static $PASSWORD;
-  private static $DBNAME;
-  private static $PORT;
+  private static string $HOSTNAME = '';
+  private static string $USERNAME = '';
+  private static string $PASSWORD = '';
+  private static string $DBNAME = '';
+  private static string $PORT = '3306';
 
-  private $conn;
+  private \PDO $conn;
 
   public function __construct()
   {
-    if (self::$HOSTNAME === null) {
+  if (self::$HOSTNAME === '') {
       self::$HOSTNAME = getenv('MYSQL_HOST') ?: ($_ENV["MYSQL_HOST"] ?? ($_SERVER['MYSQL_HOST'] ?? '127.0.0.1'));
       self::$USERNAME = getenv('MYSQL_USERNAME') ?: ($_ENV["MYSQL_USERNAME"] ?? ($_SERVER['MYSQL_USERNAME'] ?? 'root'));
       self::$PASSWORD = getenv('MYSQL_PASSWORD') ?: ($_ENV["MYSQL_PASSWORD"] ?? ($_SERVER['MYSQL_PASSWORD'] ?? ''));
