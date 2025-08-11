@@ -5,7 +5,7 @@ use Dotenv\Dotenv;
 
 
 $dotenv = Dotenv::createImmutable(dirname(__DIR__, levels: 3));
-$dotenv->load();
+$dotenv->safeLoad();
 $dotenv->required([
   'MYSQL_HOST',
   'MYSQL_USERNAME',
@@ -27,23 +27,27 @@ class SQL
   private static $USERNAME;
   private static $PASSWORD;
   private static $DBNAME;
+  private static $PORT;
 
   private $conn;
 
   public function __construct()
   {
     if (self::$HOSTNAME === null) {
-      self::$HOSTNAME = $_ENV["MYSQL_HOST"];
-      self::$USERNAME = $_ENV["MYSQL_USERNAME"];
-      self::$PASSWORD = $_ENV["MYSQL_PASSWORD"];
-      self::$DBNAME = $_ENV["MYSQL_DATABASE_NAME"];
+      self::$HOSTNAME = getenv('MYSQL_HOST') ?: ($_ENV["MYSQL_HOST"] ?? ($_SERVER['MYSQL_HOST'] ?? '127.0.0.1'));
+      self::$USERNAME = getenv('MYSQL_USERNAME') ?: ($_ENV["MYSQL_USERNAME"] ?? ($_SERVER['MYSQL_USERNAME'] ?? 'root'));
+      self::$PASSWORD = getenv('MYSQL_PASSWORD') ?: ($_ENV["MYSQL_PASSWORD"] ?? ($_SERVER['MYSQL_PASSWORD'] ?? ''));
+      self::$DBNAME = getenv('MYSQL_DATABASE_NAME') ?: ($_ENV["MYSQL_DATABASE_NAME"] ?? ($_SERVER['MYSQL_DATABASE_NAME'] ?? ''));
+      self::$PORT = getenv('MYSQL_PORT') ?: ($_ENV['MYSQL_PORT'] ?? ($_SERVER['MYSQL_PORT'] ?? '3306'));
     }
 
-    $this->conn = new \PDO(
-      "mysql:dbname=" . self::$DBNAME . ";host=" . self::$HOSTNAME,
-      self::$USERNAME,
-      self::$PASSWORD
-    );
+    $dsn = sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', self::$HOSTNAME, self::$PORT, self::$DBNAME);
+    $options = [
+      \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+      \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+      \PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+    $this->conn = new \PDO($dsn, self::$USERNAME, self::$PASSWORD, $options);
   }
 
   /**

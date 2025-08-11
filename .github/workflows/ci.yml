@@ -36,6 +36,7 @@ jobs:
           MYSQL_USERNAME: root
           MYSQL_PASSWORD: root
           MYSQL_DATABASE_NAME: db_ecommerce
+          MYSQL_PORT: 3306
         run: |
           php -r '$sql=file_get_contents("src/infra/database/create-tables.sql"); $pdo=new PDO("mysql:host=127.0.0.1;port=3306;dbname=mysql","root","root"); foreach(array_filter(array_map("trim", explode(";", $sql))) as $stmt){ if($stmt){ $pdo->exec($stmt); } }'
       - name: Set env for tests
@@ -44,6 +45,7 @@ jobs:
           echo "MYSQL_USERNAME=root" >> $GITHUB_ENV
           echo "MYSQL_PASSWORD=root" >> $GITHUB_ENV
           echo "MYSQL_DATABASE_NAME=db_ecommerce" >> $GITHUB_ENV
+          echo "MYSQL_PORT=3306" >> $GITHUB_ENV
       - name: PHPStan
         run: ./vendor/bin/phpstan analyse src --no-progress
       - name: PHPUnit
